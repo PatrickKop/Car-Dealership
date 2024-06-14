@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'carDealership.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    #This is the settings of adding a database that is not sqlite3
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.mysql',        #If you want to change db just change the "mysql" to other db like postgre
+        'NAME':'car_db',                            #db name
+        'USER':'root',                              #db Users name
+        'PASSWORD':'admin',
+        'HOST':'127.0.0.1',                         #db IP address
+        'PORT':'3006',                              #db port number
     }
+
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
