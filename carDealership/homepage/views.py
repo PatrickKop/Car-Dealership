@@ -6,4 +6,7 @@ def home(request):
 
 def second(request):
     return render(request, "secondpage.html")
+
+def inventory(request):
+    return render(request, "inventory.html")
     
