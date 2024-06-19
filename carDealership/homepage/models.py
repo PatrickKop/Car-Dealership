@@ -16,5 +16,5 @@ class employees(models.Model):
     employeeLastName = models.CharField(max_length=50)
     employeeEmail = models.EmailField                   #look up more features for email
 
-class inventory(models.Model):
+#class inventory(models.Model):
     
