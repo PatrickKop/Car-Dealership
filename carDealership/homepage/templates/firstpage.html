@@ -4,24 +4,67 @@
 {% block content %}
 <!--Anything inside will be affected by the bootstrap-->
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>First Page</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <p>This Will be the Homepage</p>
-    <p>This is the second sentence</p>
-    <a href="secondpage.html">To Go to Second Page</a>
-    <a href="inventory.html">Inventory</a>
+<div class="col-md-6 offset-md-3">
+  <!--bootstrap code to center everything-->
 
-    <!--- <script src="index.js"></script>-->
-  </body>
-</html>
+  {% if user.is_authenticated %}
+  <h1>This worked</h1>
 
-{% endblock %}
-<!--Ends the block for bootstrap changes-->
+  {% else %}
+
+
+
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}                      <!--Cross site request token to prevent hijacking from hackers-->
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <title>First Page</title>
+      <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+      <h1>Login</h1>
+      
+      
+      <a href="secondpage.html">To Go to Second Page</a>
+      <a href="inventory.html">Inventory</a>
+      <br>
+      <br>
+    
+
+    </body>
+  </html>
+
+  <form>
+    <div class="mb-3">
+      
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        placeholder="Email"
+        required
+        
+      />
+    </div>
+    <div class="mb-3">
+      
+      <input type="password" 
+      class="form-control" 
+      name="password"
+      placeholder="Password"
+      required />
+       
+      <br>
+
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</form>
+  {% endif %}
+  {% endblock %}
+  <!--Ends the block for bootstrap changes-->
+</div>
