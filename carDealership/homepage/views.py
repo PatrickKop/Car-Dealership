@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
+from .forms import SignUpForm                       #On the forms.py file(.forms) we use the class SignUpForm 
 
 # All below is added
 def home(request):
@@ -33,4 +34,20 @@ def logout_user(request):
 
 
 def register_user(request):
-    return render(request, "register.html", {})
+    if request.method == "POST":
+        form = SignUpForm(request.POST)             #Whenever the form is filled out send to the SignUpForm Class
+        if form.is_valid():                         #Django will check if the info entered is valued
+            form.save()                             #Will save if valid
+            #Authenticate and login
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password1"]
+            user = authenticate(username=username, password=password)       #passed as password since password1 was renamed to password
+            login(request, user)                    #logs in users
+            messages.success(request, "You have successgully registered")
+            return redirect('home')
+        
+    else:
+        form = SignUpForm()
+        return render(request, "register.html", {"form":form})
+    
+    return render(request, "register.html", {"form":form})

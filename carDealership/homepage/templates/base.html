@@ -15,8 +15,7 @@
     {% include "navbar.html" %}
     <!--Everything other than this block content tags is copied from the bootstrap website-->
     <div class="container">
-      {% if messages %} 
-      {% for message in messages %}
+      {% if messages %} {% for message in messages %}
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{message}}
         <button
@@ -27,9 +26,7 @@
         ></button>
       </div>
 
-      {% endfor %} 
-      {% endif %} 
-      {% block content %}
+      {% endfor %} {% endif %} {% block content %}
       <!-- Django will take all the things on our webpage and place between these tags.-->
       {% endblock %}
     </div>
