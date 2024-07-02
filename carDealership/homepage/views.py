@@ -9,14 +9,16 @@ def home(request):
         email = request.POST['email']
         password = request.POST['password']
         #Authenticate
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=email, password=password)     #The username will also be the email
         if user is not None:
             login(request,user)
+            messages.success(request, "You have been logged in")
             return redirect('home')
-        else:   
+        else:
+            messages.success(request, "There was an error")
             return redirect("home")  
     else:
-        return render(request, "secondpage.html")
+        return render(request, "firstpage.html", {})
 
 def second(request):
     return render(request, "secondpage.html")
@@ -25,5 +27,10 @@ def inventory(request):
     return render(request, "inventory.html")
 
 def logout_user(request):
-    pass
-    
+    logout(request)             #Uses the logout function from the top
+    messages.success(request, "You have been logged out!")
+    return redirect("home")
+
+
+def register_user(request):
+    return render(request, "register.html", {})
