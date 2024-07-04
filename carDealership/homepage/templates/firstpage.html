@@ -15,7 +15,7 @@
 
 
 <form method="POST" action="{% url 'home' %}">
-    {% csrf_token %}                      <!--Cross site request token to prevent hijacking from hackers-->
+    {% csrf_token %}                      <!--Cross site request token to prevent hijacking from hackers (Cross Site Forgery)-->
  
     <body>
       <h1>Login</h1>

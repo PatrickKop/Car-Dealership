@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<h1>Customer Records</h1>
+
+
+<div class="card">
+    <h5 class="card-header">
+        <strong>{{ employee_record.employeeFirstName }}
+        {{ employee_record.employeeLastName }}</h5></strong>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>ID: </strong>{{ employee_record.id }} <br>                        <!--Get the employee_record from the views.py function-->
+        <strong>Email: </strong>{{ employee_record.employeeEmail }}<br>
+        <strong>Phone: </strong>{{ employee_record.employeePhone }}<br>
+        <strong>Address: </strong>{{ employee_record.employeeAddress }}<br>
+        <strong>City: </strong>{{ employee_record.employeeCity }}<br>
+        <strong>State: </strong>{{ employee_record.employeeState }}<br>
+        <strong>Zipcode: </strong>{{ employee_record.employeeZip }}<br></p>
+      
+    </div>
+  </div>
+
+  <br><br>
+  <a href="{%url 'employees' %}" class="btn btn-secondary">Back</a>
+
+  <a href="{%url 'deleteEmployeeRecord' employee_record.id %}" class="btn btn-danger">Delete</a>          <!--URL is the name at the end of the URL.py file for the path-->
+    
+
+{% endblock %}

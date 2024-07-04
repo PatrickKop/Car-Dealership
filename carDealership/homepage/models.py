@@ -16,7 +16,7 @@ class employees(models.Model):
     employeeLastName = models.CharField(max_length=50, default='')
     employeeEmail = models.CharField(max_length=100, default='')                  
     employeePhone = models.CharField(max_length=15, default='')
-    employeeAddress =models.CharField(max_length=100, default='Unknown Address')
+    employeeAddress =models.CharField(max_length=100, default='')
     employeeCity = models.CharField(max_length=50, default='')
     employeeState = models.CharField(max_length=50, default='')
     employeeZip = models.CharField(max_length=20, default='')

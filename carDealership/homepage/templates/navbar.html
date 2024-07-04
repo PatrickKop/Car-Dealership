@@ -26,6 +26,10 @@
           {% if user.is_authenticated %}
 
           <li class="nav-item">
+            <a class="nav-link" href="{% url "addEmployee" %}">Add Employee</a>   <!--Use the Name of the URL-->
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="{% url "logout" %}">Logout</a>
           </li>
 

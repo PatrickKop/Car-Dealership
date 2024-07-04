@@ -29,7 +29,7 @@ def inventory(request):
     return render(request, "inventory.html")
 
 def employees_list(request):
-    employees_view = employees.objects.all()
+    employees_view = employees.objects.all()            #Grabs all the records from employees
     return render(request, "employees.html", {"employees_view":employees_view} )
 
 def logout_user(request):
@@ -56,3 +56,27 @@ def register_user(request):
         return render(request, "register.html", {"form":form})
     
     return render(request, "register.html", {"form":form})
+
+def employees_record(request, pk):
+    if request.user.is_authenticated:       #This is to make sure the user is logged in before viewing record
+        #Look up employee records
+        employee_record = employees.objects.get(id=pk)      #Get will only get the object that is called. All will grab all the records
+        return render(request, "employeeRecord.html", {"employee_record":employee_record})
+    else:
+        messages.success(request, "You must be logged in to view that page")
+        return redirect('home')
+
+
+def delete_employees_record(request, pk):
+    if request.user.is_authenticated:
+        remove_employee = employees.objects.get(id=pk)
+        remove_employee.delete()
+        messages.success(request, "Employee record has been deleted successfully")
+        return redirect('employees')
+        #add confirmation to delete employee
+    else:
+        messages.success(request, "You must be logged in to do that")
+        return redirect('home')
+    
+def add_employee(request):
+    return render(request, "addEmployee.html", {})          

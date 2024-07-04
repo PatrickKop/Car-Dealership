@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm      #Creates users
 from django.contrib.auth.models import User                 #Uses the user model such as for the admin/superuser. Comes with django
 from django import forms
+from .models import employees
 
 
 class SignUpForm(UserCreationForm):
@@ -34,5 +35,17 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
             
-    
-    
+
+
+
+    #Create Add Employee
+class AddEmployeeForm(forms.ModelForm):                       #Imported from forms
+    #add information needed to fill out the database with employee info
+    employee_first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    employee_last_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class":"form-control"}), label="")
+    employee_email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Email", "class":"form-control"}), label="")
+    employee_phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    employee_address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    employee_city = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    employee_state = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    employee_zipcode = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
