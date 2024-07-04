@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+
+<h1>This is a test for employees page</h1>
+
+{% if user.is_authenticated %}
+
+<h1>The list of employees</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Zipcode</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        
+{% if employees_view %}                <!--from the views function. What the valuses are renamed as.-->
+
+    {% for employee in employees_view %}        <!--Run a loop of all the employees-->
+        <tr>    
+            <td>{{ employee.employeeFirstName }}
+            {{ employee.employeeLastName }}</td>
+            <td>{{ employee.employeeEmail }}</td>
+            <td>{{ employee.employeePhone }}</td>
+            <td>{{ employee.employeeAddress }}</td>
+            <td>{{ employee.employeeCity }}</td>
+            <td>{{ employee.employeeState }}</td>
+            <td>{{ employee.employeeZip }}</td>
+        </tr>
+    {% endfor %}
+
+{% endif %} 
+
+        
+    </tbody>
+    </table>
+
+
+
+
+{% endif %} 
+{% endblock %}

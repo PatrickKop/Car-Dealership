@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
 from .forms import SignUpForm                       #On the forms.py file(.forms) we use the class SignUpForm 
+from .models import employees                       #This will get the info from the employees table in sql
 
 # All below is added
 def home(request):
@@ -26,6 +27,10 @@ def second(request):
 
 def inventory(request):
     return render(request, "inventory.html")
+
+def employees_list(request):
+    employees_view = employees.objects.all()
+    return render(request, "employees.html", {"employees_view":employees_view} )
 
 def logout_user(request):
     logout(request)             #Uses the logout function from the top
