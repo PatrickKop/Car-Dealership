@@ -5,17 +5,16 @@
 <h1>Add Record</h1>
 <br>
  
-<form method="POST" action="{% url 'addEmployee' %}">
+<form method="POST">
     {% csrf_token %} 
 
     {{ form.as_p}}                          <!--Create the form in the forms.py file-->
   
-<button type="submit" class="btn btn-primary">Add Employee</button>
-
-<a href="{%url 'employees' %}" class="btn btn-secondary">Back</a>
+<button type="submit" class="btn btn-primary">Update</button>
   
 
 </form>
 </div>
+
 
 {% endblock %}

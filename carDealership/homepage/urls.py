@@ -14,4 +14,6 @@ path("employees/", views.employees_list, name="employees"),
 path("employeeRecord/<int:pk>", views.employees_record, name="employeeRecord"),
 path("deleteEmployeeRecord/<int:pk>", views.delete_employees_record, name="deleteEmployeeRecord"),
 path("addEmployee/", views.add_employee, name="addEmployee"),
+path("updateEmployeeRecord/<int:pk>", views.update_employees_record, name="updateEmployeeRecord"),
+
 ]

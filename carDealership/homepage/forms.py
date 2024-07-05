@@ -40,12 +40,17 @@ class SignUpForm(UserCreationForm):
 
     #Create Add Employee
 class AddEmployeeForm(forms.ModelForm):                       #Imported from forms
-    #add information needed to fill out the database with employee info
-    employee_first_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
-    employee_last_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class":"form-control"}), label="")
-    employee_email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Email", "class":"form-control"}), label="")
-    employee_phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
-    employee_address = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
-    employee_city = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
-    employee_state = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
-    employee_zipcode = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    #add information needed to fill out the database with employee info. Varable is from the database
+    employeeFirstName = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "First Name", "class":"form-control"}), label="")
+    employeeLastName = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Last Name", "class":"form-control"}), label="")
+    employeeEmail = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Email", "class":"form-control"}), label="")
+    employeePhone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Phone Number", "class":"form-control"}), label="")
+    employeeAddress = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Address", "class":"form-control"}), label="")
+    employeeCity = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "City", "class":"form-control"}), label="")
+    employeeState = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "State", "class":"form-control"}), label="")
+    employeeZip = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Zipcode", "class":"form-control"}), label="")
+
+    class Meta:
+        model = employees                           #What database table it refers to
+        exclude = ("user", )
+    

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
-from .forms import SignUpForm                       #On the forms.py file(.forms) we use the class SignUpForm 
+from .forms import SignUpForm, AddEmployeeForm                       #On the forms.py file(.forms) we use the class SignUpForm 
 from .models import employees                       #This will get the info from the employees table in sql
 
 # All below is added
@@ -79,4 +79,30 @@ def delete_employees_record(request, pk):
         return redirect('home')
     
 def add_employee(request):
-    return render(request, "addEmployee.html", {})          
+    form = AddEmployeeForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method =="POST":
+            if form.is_valid():
+                add_employee = form.save()
+                messages.success(request, "Employee has been added")
+                return redirect('home')
+        return render(request, "addEmployee.html", {"form":form}) 
+    else:
+        messages.success(request, "You must be logged in to add employees")
+        return redirect('home')     
+
+
+def update_employees_record(request, pk):
+    if request.user.is_authenticated:
+        current_record = employees.objects.get(id=pk)
+        form = AddEmployeeForm(request.POST or None, instance=current_record)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Record has been updated")
+            return redirect('employees')
+        return render(request, "updateEmployeeRecord.html", {"form":form}) 
+    else:
+        messages.success(request, "You must be logged in to update employees")
+        return redirect('home')   
+
+

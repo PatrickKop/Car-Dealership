@@ -31,8 +31,8 @@
     {% for employee in employees_view %}        <!--Run a loop of all the employees-->
         <tr>   
             <td><a href="{% url 'employeeRecord' employee.id %}">{{ employee.id }}</a></td>     <!--From url.py file and where the link is to follow-->
-            <td>{{ employee.employeeFirstName }}
-            {{ employee.employeeLastName }}</td>
+            <td><a href="{% url 'employeeRecord' employee.id %}">{{ employee.employeeFirstName }}
+            {{ employee.employeeLastName }}</a></td>
             <td>{{ employee.employeeEmail }}</td>
             <td>{{ employee.employeePhone }}</td>
             <td>{{ employee.employeeAddress }}</td>
