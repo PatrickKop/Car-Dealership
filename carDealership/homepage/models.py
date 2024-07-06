@@ -1,14 +1,28 @@
 from django.db import models            #Django will create the SQL code for the database you are using here. So all the code here is python code and the sql is behind the scenes
 
 # Create your models here.
+
+class CarMake(models.Model):
+    make = models.CharField(max_length=100, default='N/A')
+
+class CarModel(models.Model):
+    model = models.CharField(max_length=100, default='N/A')
+    make = models.ForeignKey(CarMake, on_delete=models.CASCADE, default='N/A')
+
+class CarColor(models.Model):
+    CarColor = models.CharField(max_length=100, default='N/A')
+
 class cars(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=50)
+    CarModel = models.ForeignKey(CarModel, on_delete=models.CASCADE, default='N/A')
+    CarColor = models.ForeignKey(CarColor, on_delete=models.CASCADE, default='N/A')
+    CarYear = models.IntegerField(default=0)
+    Miles = models.IntegerField(default=0)
+    Price = models.IntegerField(default=0)
 
 class customers(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
-    email = models.EmailField                           #look up more features for email
+    email = models.EmailField                           
 
 class employees(models.Model):
     #created_at = models.DateTimeField(auto_now_add=True)

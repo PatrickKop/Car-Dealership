@@ -29,8 +29,13 @@ def inventory(request):
     return render(request, "inventory.html")
 
 def employees_list(request):
-    employees_view = employees.objects.all()            #Grabs all the records from employees
-    return render(request, "employees.html", {"employees_view":employees_view} )
+    if request.user.is_authenticated:
+        employees_view = employees.objects.all()            #Grabs all the records from employees
+        return render(request, "employees.html", {"employees_view":employees_view} )
+    else:
+        messages.success(request, "You must be logged in to view that page")
+        return redirect('home')
+
 
 def logout_user(request):
     logout(request)             #Uses the logout function from the top
