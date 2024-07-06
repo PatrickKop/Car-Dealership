@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm      #Creates users
 from django.contrib.auth.models import User                 #Uses the user model such as for the admin/superuser. Comes with django
 from django import forms
-from .models import employees
+from .models import employees, Car
 
 
 class SignUpForm(UserCreationForm):

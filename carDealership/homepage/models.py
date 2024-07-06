@@ -5,19 +5,31 @@ from django.db import models            #Django will create the SQL code for the
 class CarMake(models.Model):
     make = models.CharField(max_length=100, default='N/A')
 
+    def __str__(self):
+        return self.make
+
 class CarModel(models.Model):
     model = models.CharField(max_length=100, default='N/A')
-    make = models.ForeignKey(CarMake, on_delete=models.CASCADE, default='N/A')
+    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.make.make} {self.model}"
 
 class CarColor(models.Model):
-    CarColor = models.CharField(max_length=100, default='N/A')
+    color = models.CharField(max_length=100, default='N/A')
 
-class cars(models.Model):
-    CarModel = models.ForeignKey(CarModel, on_delete=models.CASCADE, default='N/A')
-    CarColor = models.ForeignKey(CarColor, on_delete=models.CASCADE, default='N/A')
-    CarYear = models.IntegerField(default=0)
-    Miles = models.IntegerField(default=0)
-    Price = models.IntegerField(default=0)
+    def __str__(self):
+        return self.color
+
+class Car(models.Model):
+    model = models.ForeignKey(CarModel, on_delete=models.CASCADE)
+    color = models.ForeignKey(CarColor, on_delete=models.CASCADE)
+    year = models.IntegerField(default=0)
+    miles = models.IntegerField(default=0)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.year} {self.model.make.make} {self.model.model} in {self.color.color}"
 
 class customers(models.Model):
     firstName = models.CharField(max_length=50)

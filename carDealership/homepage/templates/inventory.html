@@ -1,28 +1,51 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inventory</title>
-  </head>
-  <body>
-    <p>This will be the inventoy page</p>
-    <p>This will be the table for the list of cars</p>
-    <a href="firstpage.html">HomePage</a>
-    <h1>Inventory</h1>
-    <table border="1">
-      <!-- Create table-->
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-    </table>
-  </body>
-</html>
+<body>
+ 
+<h1>Car Inventory</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Zipcode</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if employees_view %}
+    <!--from the views function. What the valuses are renamed as.-->
+
+      {% for employee in employees_view %}
+      <!--Run a loop of all the employees-->
+      <tr>
+        <td>
+          <a href="{% url 'employeeRecord' employee.id %}">{{ employee.id }}</a>
+        </td>
+        <!--From url.py file and where the link is to follow-->
+        <td>
+          <a href="{% url 'employeeRecord' employee.id %}"
+            >{{ employee.employeeFirstName }} {{ employee.employeeLastName }}</a
+          >
+        </td>
+        <td>{{ employee.employeeEmail }}</td>
+        <td>{{ employee.employeePhone }}</td>
+        <td>{{ employee.employeeAddress }}</td>
+        <td>{{ employee.employeeCity }}</td>
+        <td>{{ employee.employeeState }}</td>
+        <td>{{ employee.employeeZip }}</td>
+      </tr>
+      {% endfor %} 
+    {% endif %}
+  </tbody>
+</table>
+</body>
+
 
 {% endblock %}
