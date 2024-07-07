@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
 from .forms import SignUpForm, AddEmployeeForm                       #On the forms.py file(.forms) we use the class SignUpForm 
-from .models import employees, Car                       #This will get the info from the employees table in sql
+from .models import employees, CarColor, CarMake, CarModel, Car                      #This will get the info from the employees table in sql
 
 # All below is added
 def home(request):
@@ -20,16 +20,25 @@ def home(request):
             messages.success(request, "There was an error")
             return redirect("home")  
     else:
-        return render(request, "firstpage.html", {})
+        return render(request, "firstpage.html")
 
 def second(request):
     return render(request, "secondpage.html")
 
 def inventory(request):
     #return render(request, "inventory.html")
-    if request.user.is_authenticated:
+    # if request.user.is_authenticated:
         car_list = Car.objects.all()            #Grabs all the records from employees
         return render(request, "inventory.html", {"car_list":car_list} )
+    # else:
+    #     messages.success(request, "You must be logged in to view that page")
+    #     return redirect('home')
+    
+def car_record(request, pk):                #Make sure to add pk
+    if request.user.is_authenticated:       #This is to make sure the user is logged in before viewing record
+        #Look up car records
+        car_detail = Car.objects.get(id=pk)      #Get will only get the object that is called. All will grab all the records
+        return render(request, "carRecord.html", {"car_detail":car_detail})
     else:
         messages.success(request, "You must be logged in to view that page")
         return redirect('home')

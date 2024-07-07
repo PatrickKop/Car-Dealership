@@ -9,43 +9,61 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Address</th>
-      <th scope="col">City</th>
-      <th scope="col">State</th>
-      <th scope="col">Zipcode</th>
+      <th scope="col">Year</th>
+      <th scope="col">Car</th>
+      <th scope="col">Color</th>
+      <th scope="col">Miles</th>
+      <th scope="col">Price</th>
     </tr>
   </thead>
   <tbody>
-    {% if employees_view %}
+
+
+{% if user.is_authenticated %}
+
+  {% if car_list %}
     <!--from the views function. What the valuses are renamed as.-->
 
-      {% for employee in employees_view %}
+      {% for car in car_list %}
       <!--Run a loop of all the employees-->
       <tr>
-        <td>
-          <a href="{% url 'employeeRecord' employee.id %}">{{ employee.id }}</a>
-        </td>
+        <td><a href="{% url 'carRecord' car.id %}">{{ car.id }}</a></td>
         <!--From url.py file and where the link is to follow-->
-        <td>
-          <a href="{% url 'employeeRecord' employee.id %}"
-            >{{ employee.employeeFirstName }} {{ employee.employeeLastName }}</a
-          >
-        </td>
-        <td>{{ employee.employeeEmail }}</td>
-        <td>{{ employee.employeePhone }}</td>
-        <td>{{ employee.employeeAddress }}</td>
-        <td>{{ employee.employeeCity }}</td>
-        <td>{{ employee.employeeState }}</td>
-        <td>{{ employee.employeeZip }}</td>
+        <td>{{ car.year }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.color }}</td>
+        <td>{{ car.miles }}</td>
+        <td><body>$</body>{{ car.price }}</td>
+        
+      </tr>
+      {% endfor %} 
+    {% endif %}
+
+
+    {% else %}        <!--This is if users are not signed in. They can still view the inventory just not make changes.-->
+    {% if car_list %}
+    <!--from the views function. What the valuses are renamed as.-->
+
+      {% for car in car_list %}
+      <!--Run a loop of all the employees-->
+      <tr>
+        <td>{{ car.id }}</td>
+        <!--From url.py file and where the link is to follow-->
+        <td>{{ car.year }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.color }}</td>
+        <td>{{ car.miles }}</td>
+        <td>{{ car.price }}</td>
+        
       </tr>
       {% endfor %} 
     {% endif %}
   </tbody>
 </table>
 </body>
+{% endif %}
+
+
 
 
 {% endblock %}
