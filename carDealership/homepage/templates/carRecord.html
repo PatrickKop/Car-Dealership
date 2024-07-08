@@ -12,7 +12,7 @@
         <strong>ID: </strong>{{car_detail.id}}<br>                        <!--Get the employee_record from the views.py function-->
         <strong>Year: </strong>{{ car_detail.year }}<br>
         <strong>Make: </strong>{{ car_detail.model.make.make }}<br>
-        <strong>Car: </strong>{{ car_detail.model }}<br>
+        <strong>Model: </strong>{{ car_detail.model.model }}<br>
         <strong>Color: </strong>{{ car_detail.color }}<br>
         <strong>Miles: </strong>{{ car_detail.miles }}<br>
         <strong>Price: </strong><body>$</body>{{ car_detail.price }}<br></p>
@@ -26,11 +26,11 @@
     <div>
       <a href="{%url 'inventory' %}" class="btn btn-secondary">Back</a>
 
-      {% comment %} <a href="{%url 'updateEmployeeRecord' employee_record.id %}" class="btn btn-secondary">Update</a> {% endcomment %}
+      <a href="{%url 'updateCarRecord' car_detail.id %}" class="btn btn-secondary">Update</a> 
     </div>
-    {% comment %} <div>
+     {% comment %} <div>
       <a href="{%url 'deleteEmployeeRecord' employee_record.id %}" class="btn btn-danger">Delete</a>          <!--URL is the name at the end of the URL.py file for the path-->
-    </div> {% endcomment %}
+    </div>  {% endcomment %}
   </div> 
 
 

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models            #Django will create the SQL code for the database you are using here. So all the code here is python code and the sql is behind the scenes
 
 # Create your models here.

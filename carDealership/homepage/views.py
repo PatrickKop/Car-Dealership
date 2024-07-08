@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
-from .forms import SignUpForm, AddEmployeeForm                       #On the forms.py file(.forms) we use the class SignUpForm 
+from .forms import SignUpForm, AddEmployeeForm, AddCarForm                       #On the forms.py file(.forms) we use the class SignUpForm 
 from .models import employees, CarColor, CarMake, CarModel, Car                      #This will get the info from the employees table in sql
 
 # All below is added
@@ -42,6 +42,19 @@ def car_record(request, pk):                #Make sure to add pk
     else:
         messages.success(request, "You must be logged in to view that page")
         return redirect('home')
+    
+def update_car_record(request, pk):
+    if request.user.is_authenticated:
+        current_record = Car.objects.get(id=pk)
+        form = AddCarForm(request.POST or None, instance=current_record)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Record has been updated")
+            return redirect('inventory')
+        return render(request, "updateCarRecord.html", {"form":form}) 
+    else:
+        messages.success(request, "You must be logged in to update employees")
+        return redirect('home')  
 
 def employees_list(request):
     if request.user.is_authenticated:

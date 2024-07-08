@@ -53,4 +53,15 @@ class AddEmployeeForm(forms.ModelForm):                       #Imported from for
     class Meta:
         model = employees                           #What database table it refers to
         exclude = ("user", )
+
+
+class AddCarForm(forms.ModelForm):                       #Imported from forms
+    #add information needed to fill out the database with employee info. Varable is from the database
+    #year = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Email", "class":"form-control"}), label="")
+    miles = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Phone Number", "class":"form-control"}), label="")
+    price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Address", "class":"form-control"}), label="")
+    
+    class Meta:
+        model = Car                           #What database table it refers to
+        exclude = ("user", )
     
