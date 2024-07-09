@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm      #Creates users
 from django.contrib.auth.models import User                 #Uses the user model such as for the admin/superuser. Comes with django
 from django import forms
-from .models import employees, Car
+from .models import employees, CarColor, CarMake, CarModel, Car
 
 
 class SignUpForm(UserCreationForm):
@@ -57,11 +57,26 @@ class AddEmployeeForm(forms.ModelForm):                       #Imported from for
 
 class AddCarForm(forms.ModelForm):                       #Imported from forms
     #add information needed to fill out the database with employee info. Varable is from the database
-    #year = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Email", "class":"form-control"}), label="")
-    miles = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Phone Number", "class":"form-control"}), label="")
-    price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Address", "class":"form-control"}), label="")
+    make = forms.ModelChoiceField(queryset=CarMake.objects.all(),required=True, label= "Make")
+    model = forms.ModelChoiceField(queryset=CarModel.objects.all(),required=True, label= "Model")
+    color = forms.ModelChoiceField(queryset=CarColor.objects.all(),required=True, label= "Color")
+    year = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Year"}), label= "Year")
+    miles = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Miles"}), label= "Miles")
+    price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Price"}), label="Price")
     
     class Meta:
         model = Car                           #What database table it refers to
-        exclude = ("user", )
+        fields = ['make', 'model', 'color', 'year', 'miles', 'price']
+
+
+class AddCarMakeForm(forms.ModelForm):
+    class Meta:
+        model = CarMake
+        fields = ['make']
+
+class AddCarModelForm(forms.ModelForm):
+    class Meta:
+        model = CarModel
+        fields = ['make', 'model' ]
+
     

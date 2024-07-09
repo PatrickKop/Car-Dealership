@@ -4,20 +4,20 @@ from django.db import models            #Django will create the SQL code for the
 # Create your models here.
 
 class CarMake(models.Model):
-    make = models.CharField(max_length=100, default='N/A')
+    make = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.make
 
 class CarModel(models.Model):
-    model = models.CharField(max_length=100, default='N/A')
+    model = models.CharField(max_length=100, default='')
     make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.make.make} {self.model}"
 
 class CarColor(models.Model):
-    color = models.CharField(max_length=100, default='N/A')
+    color = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.color

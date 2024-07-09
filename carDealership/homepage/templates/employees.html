@@ -2,14 +2,12 @@
 {% block content %}
 
 
-<h1>This is a test for employees page</h1>
-
 {% if user.is_authenticated %}
 
 <h1>The list of employees</h1>
 
-<table class="table table-bordered" >
-    <thead>
+<table class="table table-bordered table-striped table-hover" >
+    <thead class="table-dark">
         <tr>
         <th scope="col">ID</th>
         <th scope="col">Name</th>

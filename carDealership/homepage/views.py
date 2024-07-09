@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
-from .forms import SignUpForm, AddEmployeeForm, AddCarForm                       #On the forms.py file(.forms) we use the class SignUpForm 
+from .forms import SignUpForm, AddEmployeeForm, AddCarForm, AddCarMakeForm, AddCarModelForm                       #On the forms.py file(.forms) we use the class SignUpForm 
 from .models import employees, CarColor, CarMake, CarModel, Car                      #This will get the info from the employees table in sql
 
 # All below is added
@@ -54,7 +54,20 @@ def update_car_record(request, pk):
         return render(request, "updateCarRecord.html", {"form":form}) 
     else:
         messages.success(request, "You must be logged in to update employees")
-        return redirect('home')  
+        return redirect('home') 
+
+def add_car(request):
+    form = AddCarForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method =="POST":
+            if form.is_valid():
+                add_car = form.save()
+                messages.success(request, "Car has been added")
+                return redirect('inventory')
+        return render(request, "addCar.html", {"form":form}) 
+    else:
+        messages.success(request, "You must be logged in to add employees")
+        return redirect('home') 
 
 def employees_list(request):
     if request.user.is_authenticated:
@@ -137,5 +150,26 @@ def update_employees_record(request, pk):
     else:
         messages.success(request, "You must be logged in to update employees")
         return redirect('home')   
+    
+def add_car_make(request):
+    if request.method == 'POST':
+        form = AddCarMakeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inventory') 
+    else:
+        form = AddCarMakeForm()
+    return render(request, 'addCarMake.html', {'form': form})
+
+
+def add_car_model(request):
+    if request.method == 'POST':
+        form = AddCarModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inventory') 
+    else:
+        form = AddCarModelForm()
+    return render(request, 'addCarModel.html', {'form': form})
 
 

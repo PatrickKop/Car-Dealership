@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h2>Add Car Model</h2>
+  
+  <form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Add Car Model</button>
+    <a href="{%url 'inventory' %}" class="btn btn-secondary">Back</a>
+    <a href="{%url 'add_car_make' %}" class="btn btn-secondary">Car Make</a>
+  </form>
+
+{% endblock %}
