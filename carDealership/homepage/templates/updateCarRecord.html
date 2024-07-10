@@ -8,8 +8,24 @@
 <form method="POST">
     {% csrf_token %} 
 
-    {{ form.as_p}}                          <!--Create the form in the forms.py file-->
-  
+    {% comment %} {{ form.as_p}}                          <!--Create the form in the forms.py file--> {% endcomment %}
+    
+    {% for field in form %}
+        <p>
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+            {% if field.name == "make" %}
+                <a href="{%url 'add_car_make' %}">click to add missing car make</a>
+            {% elif field.name == "model" %}
+                <a href="{%url 'add_car_model' %}">click to add missing car make and model</a>
+            {% elif field.name == "color" %}
+                <a href="{%url 'add_car_color' %}">click to add missing color</a>
+
+            {% endif %}
+        </p>
+      {% endfor %} 
+
 <button type="submit" class="btn btn-primary">Update</button>
 <a href="{%url 'inventory' %}" class="btn btn-secondary">Back</a>
   

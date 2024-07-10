@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
-from .forms import SignUpForm, AddEmployeeForm, AddCarForm, AddCarMakeForm, AddCarModelForm                       #On the forms.py file(.forms) we use the class SignUpForm 
+from .forms import SignUpForm, AddEmployeeForm, AddCarForm, AddCarMakeForm, AddCarModelForm, AddCarColorForm                       #On the forms.py file(.forms) we use the class SignUpForm 
 from .models import employees, CarColor, CarMake, CarModel, Car                      #This will get the info from the employees table in sql
 
 # All below is added
@@ -68,6 +68,17 @@ def add_car(request):
     else:
         messages.success(request, "You must be logged in to add employees")
         return redirect('home') 
+    
+def delete_car_record(request, pk):
+    if request.user.is_authenticated:
+        remove_car = Car.objects.get(id=pk)
+        remove_car.delete()
+        messages.success(request, "Car record has been deleted successfully")
+        return redirect('inventory')
+        #add confirmation to delete employee
+    else:
+        messages.success(request, "You must be logged in to do that")
+        return redirect('home')
 
 def employees_list(request):
     if request.user.is_authenticated:
@@ -171,5 +182,15 @@ def add_car_model(request):
     else:
         form = AddCarModelForm()
     return render(request, 'addCarModel.html', {'form': form})
+
+def add_car_color(request):
+    if request.method == 'POST':
+        form = AddCarColorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inventory') 
+    else:
+        form = AddCarColorForm()
+    return render(request, 'addCarColor.html', {'form': form})
 
 

@@ -57,9 +57,9 @@ class AddEmployeeForm(forms.ModelForm):                       #Imported from for
 
 class AddCarForm(forms.ModelForm):                       #Imported from forms
     #add information needed to fill out the database with employee info. Varable is from the database
-    make = forms.ModelChoiceField(queryset=CarMake.objects.all(),required=True, label= "Make")
-    model = forms.ModelChoiceField(queryset=CarModel.objects.all(),required=True, label= "Model")
-    color = forms.ModelChoiceField(queryset=CarColor.objects.all(),required=True, label= "Color")
+    make = forms.ModelChoiceField(queryset=CarMake.objects.all().order_by('make'),required=True, label= "Make")
+    model = forms.ModelChoiceField(queryset=CarModel.objects.all().order_by('model'),required=True, label= "Model")
+    color = forms.ModelChoiceField(queryset=CarColor.objects.all().order_by('color'),required=True, label= "Color")
     year = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Year"}), label= "Year")
     miles = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Miles"}), label= "Miles")
     price = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder": "Price"}), label="Price")
@@ -79,4 +79,8 @@ class AddCarModelForm(forms.ModelForm):
         model = CarModel
         fields = ['make', 'model' ]
 
+class AddCarColorForm(forms.ModelForm):
+    class Meta:
+        model = CarColor
+        fields = ['color']
     

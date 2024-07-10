@@ -7,11 +7,22 @@
 
     {% csrf_token %}
 
-    {{ form.as_p }}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+
+    {% for field in form %}
+        <p>
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+            {% if field.name == "make" %}
+                <a href="{%url 'add_car_make' %}">Not Seeing Make? Click here to add</a>
+            {% endif %}
+        </p>
+      {% endfor %} 
 
     <button type="submit" class="btn btn-primary">Add Car Model</button>
     <a href="{%url 'inventory' %}" class="btn btn-secondary">Back</a>
-    <a href="{%url 'add_car_make' %}" class="btn btn-secondary">Car Make</a>
+    {% comment %} <a href="{%url 'add_car_make' %}" class="btn btn-secondary">Car Make</a> {% endcomment %}
   </form>
 
 {% endblock %}

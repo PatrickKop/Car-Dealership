@@ -19,5 +19,7 @@ path("carRecord/<int:pk>", views.car_record, name="carRecord"),
 path("addCar/", views.add_car, name="addCar"),
 path('addCarMake/', views.add_car_make, name='add_car_make'),
 path('addCarModel/', views.add_car_model, name='add_car_model'),
+path('addCarColor/', views.add_car_color, name='add_car_color'),
+path("deleteCarRecord/<int:pk>", views.delete_car_record, name="deleteCarRecord"),
 
 ]

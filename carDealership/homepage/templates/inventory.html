@@ -5,13 +5,10 @@
   <div class="d-flex justify-content-between">
 <h1>Car Inventory</h1>
 
-<a href="{%url 'addCar' %}" class="btn btn-primary">Add Car</a>
-<a href="{%url 'add_car_make' %}" class="btn btn-primary">Add Car Make</a>
-<a href="{%url 'add_car_model' %}" class="btn btn-primary">Add Car Model</a>
-  </div>
+</div>
 
 <table class="table table-bordered table-striped table-hover">
-  <thead class="table-danger">
+  <thead class="table-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Year</th>
@@ -26,6 +23,12 @@
 
 
 {% if user.is_authenticated %}
+<div class="d-flex justify-content-between">
+<a href="{%url 'addCar' %}" class="btn btn-primary">Add Car</a>
+<a href="{%url 'add_car_make' %}" class="btn btn-primary">Add Car Make</a>
+<a href="{%url 'add_car_model' %}" class="btn btn-primary">Add Car Model</a>
+<a href="{%url 'add_car_color' %}" class="btn btn-primary">Add Car Color</a>
+  
 
   {% if car_list %}
     <!--from the views function. What the valuses are renamed as.-->
