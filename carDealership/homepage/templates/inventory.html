@@ -60,10 +60,11 @@
         <td>{{ car.id }}</td>
         <!--From url.py file and where the link is to follow-->
         <td>{{ car.year }}</td>
-        <td>{{ car.model }}</td>
+        <td>{{ car.model.make.make }}</td>
+        <td>{{ car.model.model }}</td>
         <td>{{ car.color }}</td>
         <td>{{ car.miles }}</td>
-        <td>{{ car.price }}</td>
+        <td><body>$</body>{{ car.price }}</td>
         
       </tr>
       {% endfor %} 
