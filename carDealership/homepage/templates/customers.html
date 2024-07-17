@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+<h1>The list of Customers</h1>
+
+<table class="table table-bordered table-striped table-hover" >
+    <thead class="table-dark">
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Zipcode</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+
+
+        
+{% if employees_view %}                <!--from the views function. What the valuses are renamed as.-->
+
+    {% for employee in employees_view %}        <!--Run a loop of all the employees-->
+        <tr>   
+            <td><a href="{% url 'employeeRecord' employee.id %}">{{ employee.id }}</a></td>     <!--From url.py file and where the link is to follow-->
+            <td><a href="{% url 'employeeRecord' employee.id %}">{{ employee.employeeFirstName }}
+            {{ employee.employeeLastName }}</a></td>
+            <td>{{ employee.employeeEmail }}</td>
+            <td>{{ employee.employeePhone }}</td>
+            <td>{{ employee.employeeAddress }}</td>
+            <td>{{ employee.employeeCity }}</td>
+            <td>{{ employee.employeeState }}</td>
+            <td>{{ employee.employeeZip }}</td>
+            
+        </tr>
+    {% endfor %}
+
+{% endif %} 
+
+    </tbody>
+    </table>
+
+
+
+
+
+
+{% endif %} 
+{% endblock %}

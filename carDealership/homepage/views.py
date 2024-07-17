@@ -193,4 +193,5 @@ def add_car_color(request):
         form = AddCarColorForm()
     return render(request, 'addCarColor.html', {'form': form})
 
-
+def customer_list(request):
+    return render(request, "customers.html")
