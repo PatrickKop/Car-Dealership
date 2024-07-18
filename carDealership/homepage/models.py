@@ -54,5 +54,9 @@ class employees(models.Model):
 
 
 
-#class inventory(models.Model):
+#class Order(models.Model):
+#class OrderItem(models.Model):
+#class Cart(models.Model):
+#class CartItem(models.Model):
+
     
