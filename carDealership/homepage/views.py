@@ -195,3 +195,6 @@ def add_car_color(request):
 
 def customer_list(request):
     return render(request, "customers.html")
+
+def add_customer(request):
+    return render(request, "addCustomer.html")
