@@ -33,9 +33,15 @@ class Car(models.Model):
         return f"{self.year} {self.model.make.make} {self.model.model} in {self.color.color}"
 
 class customers(models.Model):
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    email = models.EmailField                           
+    customerFirstName = models.CharField(max_length=50, default='')
+    customerLastName = models.CharField(max_length=50, default='')
+    customerEmail = models.CharField(max_length=100, default='')                  
+    customerPhone = models.CharField(max_length=15, default='')
+    customerAddress =models.CharField(max_length=100, default='')
+    customerCity = models.CharField(max_length=50, default='')
+    customerState = models.CharField(max_length=50, default='')
+    customerZip = models.CharField(max_length=20, default='')
+                            
 
 class employees(models.Model):
     #created_at = models.DateTimeField(auto_now_add=True)
