@@ -32,7 +32,7 @@ class Car(models.Model):
     def __str__(self):
         return f"{self.year} {self.model.make.make} {self.model.model} in {self.color.color}"
 
-class customers(models.Model):
+class customer(models.Model):
     customerFirstName = models.CharField(max_length=50, default='')
     customerLastName = models.CharField(max_length=50, default='')
     customerEmail = models.CharField(max_length=100, default='')                  
@@ -41,7 +41,9 @@ class customers(models.Model):
     customerCity = models.CharField(max_length=50, default='')
     customerState = models.CharField(max_length=50, default='')
     customerZip = models.CharField(max_length=20, default='')
-                            
+
+    def __str__(self):
+        return (f"{self.customerFirstName} {self.customerLastName}")                  
 
 class employees(models.Model):
     #created_at = models.DateTimeField(auto_now_add=True)

@@ -24,19 +24,19 @@
 
 
         
-{% if employees_view %}                <!--from the views function. What the valuses are renamed as.-->
+{% if customers_view %}                <!--from the views function. What the valuses are renamed as.-->
 
-    {% for employee in employees_view %}        <!--Run a loop of all the employees-->
+    {% for customer in customers_view %}        <!--Run a loop of all the employees-->
         <tr>   
-            <td><a href="{% url 'employeeRecord' employee.id %}">{{ employee.id }}</a></td>     <!--From url.py file and where the link is to follow-->
-            <td><a href="{% url 'employeeRecord' employee.id %}">{{ employee.employeeFirstName }}
-            {{ employee.employeeLastName }}</a></td>
-            <td>{{ employee.employeeEmail }}</td>
-            <td>{{ employee.employeePhone }}</td>
-            <td>{{ employee.employeeAddress }}</td>
-            <td>{{ employee.employeeCity }}</td>
-            <td>{{ employee.employeeState }}</td>
-            <td>{{ employee.employeeZip }}</td>
+            <td>{{ customer.id }}</td>     <!--From url.py file and where the link is to follow-->
+            <td>{{ customer.customerFirstName }}
+            {{ customer.customerLastName }}</a></td>
+            <td>{{ customer.customerEmail }}</td>
+            <td>{{ customer.customerPhone }}</td>
+            <td>{{ customer.customerAddress }}</td>
+            <td>{{ customer.customerCity }}</td>
+            <td>{{ customer.customerState }}</td>
+            <td>{{ customer.customerZip }}</td>
             
         </tr>
     {% endfor %}

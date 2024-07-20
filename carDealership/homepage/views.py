@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout #used for logging in and out of user accounts
 from django.contrib import messages                 #This allows messages to pop up
 from .forms import SignUpForm, AddEmployeeForm, AddCarForm, AddCarMakeForm, AddCarModelForm, AddCarColorForm                       #On the forms.py file(.forms) we use the class SignUpForm 
-from .models import employees, CarColor, CarMake, CarModel, Car                      #This will get the info from the employees table in sql
+from .models import employees, CarColor, CarMake, CarModel, Car, customer                      #This will get the info from the employees table in sql
 
 # All below is added
 def home(request):
@@ -194,7 +194,14 @@ def add_car_color(request):
     return render(request, 'addCarColor.html', {'form': form})
 
 def customer_list(request):
-    return render(request, "customers.html")
+    #return render(request, "customers.html")
+    if request.user.is_authenticated:
+            customers_view = customer.objects.all()            #Grabs all the records from employees
+            return render(request, "customers.html", {"customers_view":customers_view} )
+    else:
+        messages.success(request, "You must be logged in to view that page")
+        return redirect('home')
 
 def add_customer(request):
     return render(request, "addCustomer.html")
+
