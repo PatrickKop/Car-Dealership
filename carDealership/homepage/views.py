@@ -205,3 +205,11 @@ def customer_list(request):
 def add_customer(request):
     return render(request, "addCustomer.html")
 
+def customer_record(request, pk):
+    if request.user.is_authenticated:       #This is to make sure the user is logged in before viewing record
+        #Look up employee records
+        customer_record = customer.objects.get(id=pk)      #Get will only get the object that is called. All will grab all the records
+        return render(request, "customerRecord.html", {"customer_record":customer_record})
+    else:
+        messages.success(request, "You must be logged in to view that page")
+        return redirect('home')

@@ -42,7 +42,7 @@
 
     {% for customer in customers_view %}        <!--Run a loop of all the employees-->
         <tr>   
-            <td>{{ customer.id }}</td>     <!--From url.py file and where the link is to follow-->
+            <td><a href = "{% url 'customerRecord' customer.id %}">{{ customer.id }}</a></td>     <!--From url.py file and where the link is to follow-->
             <td>{{ customer.customerFirstName }}
             {{ customer.customerLastName }}</a></td>
             <td>{{ customer.customerEmail }}</td>
