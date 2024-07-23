@@ -62,9 +62,25 @@ class employees(models.Model):
 
 
 
-#class Order(models.Model):
-#class OrderItem(models.Model):
-#class Cart(models.Model):
-#class CartItem(models.Model):
+class Order(models.Model):
+    customer = models.ForeignKey(customer, on_delete=models.CASCADE)
+    transaction_id = models.CharField(max_length=100, null=True)
 
+    def __str__(self):
+        return (f"{self.id} by {self.customer}")
+
+class OrderItem(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return(f"{self.order.customer} bought {self.quantity} {self.car}")
+
+class Cart(models.Model):
+    customer = models.ForeignKey(customer, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
     
+    def __str__(self):
+        return(f"{self.customer} bought {self.quantity} {self.car}")

@@ -24,10 +24,10 @@
 
 {% if user.is_authenticated %}
 <div class="d-flex justify-content-between">
-<a href="{%url 'addCar' %}" class="btn btn-primary">Add Car</a>
-<a href="{%url 'add_car_make' %}" class="btn btn-primary">Add Car Make</a>
-<a href="{%url 'add_car_model' %}" class="btn btn-primary">Add Car Model</a>
-<a href="{%url 'add_car_color' %}" class="btn btn-primary">Add Car Color</a>
+<a href="{%url 'addCar' %}" class="btn btn-secondary">Add Car</a>
+<a href="{%url 'add_car_make' %}" class="btn btn-secondary">Add Car Make</a>
+<a href="{%url 'add_car_model' %}" class="btn btn-secondary">Add Car Model</a>
+<a href="{%url 'add_car_color' %}" class="btn btn-secondary">Add Car Color</a>
   
 
   {% if car_list %}
