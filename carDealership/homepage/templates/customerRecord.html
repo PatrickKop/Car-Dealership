@@ -1,26 +1,28 @@
 {% extends 'base.html' %} 
 {% block content %}
 
-<h1>Car Details</h1>
+<h1>Customer Details</h1>
 
 
 <div class="card">
     <h5 class="card-header">
-        <strong>{{ car_detail }}</h5></strong>     <!--Take the car_detail from the views.py file from the variable-->
+        <strong>{{ customer_record.customerFirstName }} {{ customer_record.customerLastName }}</h5></strong>     <!--Take the car_detail from the views.py file from the variable-->
     <div class="card-body">
       <p class="card-text">
-        <strong>ID: </strong>{{car_detail.id}}<br>                        <!--Get the employee_record from the views.py function-->
-        <strong>Year: </strong>{{ car_detail.year }}<br>
-        <strong>Make: </strong>{{ car_detail.model.make.make }}<br>
-        <strong>Model: </strong>{{ car_detail.model.model }}<br>
-        <strong>Color: </strong>{{ car_detail.color }}<br>
-        <strong>Miles: </strong>{{ car_detail.miles }}<br>
-        <strong>Price: </strong><body>$</body>{{ car_detail.price }}<br></p>
-    
+        <strong>ID: </strong>{{ customer_record.id }} <br>                       <!--Get the employee_record from the views.py function-->
+        <strong>Email: </strong>{{ customer_record.customerEmail }}<br>
+        <strong>Phone: </strong>{{ customer_record.customerPhone }}<br>
+        <strong>Address: </strong>{{ customer_record.customerAddress }}<br>
+        <strong>City: </strong>{{ customer_record.customerCity }}<br>
+        <strong>State: </strong>{{ customer_record.customerState }}<br>
+        <strong>Zipcode: </strong>{{ customer_record.customerZip }}<br></p>
+      
     </div>
 </div>
 
   <br><br>
+
+  <h2>Order History</h2>
   
   {% comment %} <div class="d-flex justify-content-between">
     <div>
