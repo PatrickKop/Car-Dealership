@@ -196,7 +196,7 @@ def add_car_color(request):
 def customer_list(request):
     #return render(request, "customers.html")
     if request.user.is_authenticated:
-            customers_view = customer.objects.all()            #Grabs all the records from employees
+            customers_view = customer.objects.all()            #Grabs all the records from customer
             return render(request, "customers.html", {"customers_view":customers_view} )
     else:
         messages.success(request, "You must be logged in to view that page")
